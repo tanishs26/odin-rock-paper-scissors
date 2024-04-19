@@ -25,7 +25,7 @@ const oneRound = () => {
       alert("Game Canceled!");
       return;
     }
-  };
+  }; 
   
   for (let i = 0; i < 5; i++) {
     oneRound();
