@@ -45,9 +45,22 @@ const checkGameEnd = () => {
   }
 };
 
+const buttons = document.querySelectorAll("button");
+
+buttons.forEach((button) => {
+  button.addEventListener("click", () => {
+    button.classList.toggle("clicked");
+
+    setTimeout(() => {
+      button.classList.remove("clicked");
+    }, 200);
+  });
+});
+
+let res = document.querySelector(".rs");
+res.textContent = "";
 const oneRound = () => {
   if (!gameActive) return;
-
   const computerChoice = Object.keys(outComes)[Math.floor(Math.random() * 3)];
   if (userInput) {
     const choice = userInput;
@@ -55,12 +68,12 @@ const oneRound = () => {
 
     if (result) {
       if (choice === computerChoice) {
-        alert("It's a tie");
+        res.textContent = `It's a tie`;
       } else if (computerChoice === result.winsAgainst) {
-        alert(`You won! ${choice} beats ${computerChoice}`);
+        res.textContent = `You won! ${choice} beats ${computerChoice}`;
         playerScore += 1;
       } else if (computerChoice === result.loseAgainst) {
-        alert(`You Lose! ${computerChoice} beats ${choice}`);
+        res.textContent = `You Lose! ${computerChoice} beats ${choice}`;
         computerScore += 1;
       }
     } else {
@@ -72,5 +85,6 @@ const oneRound = () => {
   }
 
   div.textContent = `Player: ${playerScore}, Computer: ${computerScore}`;
+ div.setAttribute("style","margin:30px");
   checkGameEnd();
 };
