@@ -33,6 +33,7 @@ document.body.appendChild(div);
 const div2 = document.createElement("div");
 div2.textContent = "";
 div2.classList.add("winner");
+div2.style.color="white";
 document.body.appendChild(div2);
 
 const checkGameEnd = () => {
@@ -40,13 +41,10 @@ const checkGameEnd = () => {
     div2.textContent = "Hurray!! You Won the Game";
     gameActive = false;
     launchConfetti();
-
-    
   } else if (computerScore === 3) {
     div2.textContent = "Ohhh!!! Computer Won the game";
     gameActive = false;
     launchConfetti();
-
   }
 };
 
@@ -90,13 +88,14 @@ const oneRound = () => {
   }
 
   div.textContent = `Player: ${playerScore}, Computer: ${computerScore}`;
- div.setAttribute("style","margin:30px");
+  div.setAttribute("style", "margin:30px;color:white;");
+
   checkGameEnd();
 };
 function launchConfetti() {
-    confetti({
-        particleCount: 200,
-        spread: 80,
-        origin: { y: 0.6 }
-    });
+  confetti({
+    particleCount: 200,
+    spread: 80,
+    origin: { y: 0.6 },
+  });
 }
